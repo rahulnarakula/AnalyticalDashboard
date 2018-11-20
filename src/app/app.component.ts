@@ -7,4 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Analytics Dashboard';
+  options: Object;
+  data:any;
+  errorMessage:string;
+  constructor() {
+     
+    
+     }
+
+     ngOnInit() {
+      
+    }
+  
+    
 }
