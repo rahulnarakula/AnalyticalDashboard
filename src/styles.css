@@ -1,1 +1,21 @@
 /* You can add global styles to this file, and also import other style files */
+ @import "~bootstrap/dist/css/bootstrap.min.css";
+ @import "~font-awesome/css/font-awesome.min.css";
+ 
+body{
+     background-color: #031524;
+     color:white;
+     padding:10px;
+ }
+
+ @media only screen and (min-width: 768px){
+.col-md-6, .col-md-3 {
+    float: left;
+}
+}
+
+hr.yellow-division {
+    border-top: 4px solid #dfc64c;
+    margin-top: 45px;
+}
+

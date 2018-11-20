@@ -1,0 +1,25 @@
+.date-range-picker-input, .date-range-picker-input:focus, .date-range-picker-input:active {
+    border: none;
+    background-color: black;
+    font-size: 18px;
+    line-height: 18px;
+    padding: 7px;
+}
+
+.blue-text {
+    color: #65bae4;
+}
+
+.btn.btnc, .btn.btnc::before {
+    font-size: 13px;
+    background: #2395c8;
+    color: #FFF;
+    font-weight: 700;
+    padding: 10px 20px;
+    margin-bottom: 5px;
+    text-decoration: none;
+    border: 0;
+    border-radius: 3px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
