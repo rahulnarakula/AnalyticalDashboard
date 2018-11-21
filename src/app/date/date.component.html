@@ -1,5 +1,4 @@
-<p>
-  date works!ssssssssssssssssssssssssssssssssssssssssssssss
-</p>
-<input type="text" name="daterange" id="daterange-picker1" class="date-range-picker date-range-picker-input blue-text htag">
-<button id="button-daterange-picker1" class="dropdown-toggle btn btnc">Generate</button>
+<div id="date-pick-button">
+  <input [(ngModel)]='date' type="text" class="date-range-picker date-range-picker-input blue-text htag" name="daterangeInput" daterangepicker [options]="daterangepickerOptions" (selected)="selectedDate($event, daterange)" />
+  <button id="button-daterange-picker1" class="dropdown-toggle btn btnc" (click)='dateSelected()'>Generate</button>
+</div>

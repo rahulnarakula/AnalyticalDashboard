@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AnalyticalDataService } from '../analytical-data.service';
 
 @Component({
@@ -7,21 +7,42 @@ import { AnalyticalDataService } from '../analytical-data.service';
   styleUrls: ['./revenue-reports.component.css']
 })
 export class RevenueReportsComponent implements OnInit {
+
   data: any;
   errorMessage: any;
   goalCompletionsTableHtml = '';
   pie_sources_options: Object;
 
+  @Input() 
+  public set dateGenerated(val: string) {
+    //this.dateGenerated = val;
+    this.generateCharts(val);
+  }
+  
+  generateCharts(val): any {
+    if(val){
+      this.goalCompletionsTableHtml = '';
+      this.pie_sources_options = null;
+      this.analyticData.getData({
+        "Cust_id" : 14001,
+                  "Filters" : {"Analytics" : "Google_Analytics","Dimensions" : ["SOURCE","CITY_NAME"],
+                      "Metrics" : ["Sessions", "Bounce Rate"],
+                      "Start_Date" : val.substr(0,10),
+                      "End_Date" : val.substr(13,10)}
+      }).subscribe(
+        data => {
+          this.data = data;
+          this.setValues();
+        },
+        error => this.errorMessage =<any>error
+      );
+    }
+  }
+  
   constructor(private analyticData: AnalyticalDataService) { }
 
   ngOnInit() {
-    this.analyticData.getData().subscribe(
-      data => {
-        this.data = data;
-        this.setValues();
-      },
-      error => this.errorMessage =<any>error
-    );
+    
   }
 
   setValues(): any {

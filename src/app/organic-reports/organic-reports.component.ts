@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AnalyticalDataService } from '../analytical-data.service';
 
 @Component({
@@ -19,19 +19,46 @@ export class OrganicReportsComponent implements OnInit {
   errorMessage: any;  
   landingPageTableHtml = '';
   
+  @Input() 
+  public set dateGenerated(val: string) {
+    //this.dateGenerated = val;
+    this.generateCharts(val);
+  }
+  
+  generateCharts(val): any {
+    if(val){
+      this.landingPageTableHtml = '';
+    this.organic_sessions = 0;
+    this.organic_page_views = 0;
+    this.organic_session_duration = 0;
+    this.organic_goal_value = 0;
+    this.organic_goal_completions = 0;
+    this.organic_pages_per_session = 0;
+    this.organic_avg_session_duration = 0;
+    
+      this.analyticData.getData({
+        "Cust_id" : 14001,
+                  "Filters" : {"Analytics" : "Google_Analytics","Dimensions" : ["LANDING_PAGE", "MEDIUM","SITE"],
+                      "Metrics" : ["Sessions", "Bounce Rate"],
+                      "Start_Date" : val.substr(0,10),
+                      "End_Date" : val.substr(13,10)}
+      }).subscribe(
+        data => {
+          this.data = data;
+          this.setValues();
+        },
+        error => this.errorMessage =<any>error
+      );
+    }
+  }
+  
   constructor(private analyticData: AnalyticalDataService) { }
 
   ngOnInit() {
-    this.analyticData.getData().subscribe(
-      data => {
-        this.data = data;
-        this.setValues();
-      },
-      error => this.errorMessage =<any>error
-    );
   }
 
   setValues() {
+    
     for (let index in this.data['MEDIUM']) {
       let value = this.data['MEDIUM'][index];
         if (value.MEDIUM == "organic" || value.MEDIUM == "Organic Search") {

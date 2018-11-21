@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +10,7 @@ export class AppComponent {
   options: Object;
   data:any;
   errorMessage:string;
+  dateGenerated: string;
   constructor() {
      
     
@@ -19,5 +20,7 @@ export class AppComponent {
       
     }
   
-    
+    OnDateSelected(date: string): void{
+      this.dateGenerated = date;
+    }
 }

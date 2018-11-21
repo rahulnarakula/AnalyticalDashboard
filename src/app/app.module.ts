@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { ChartModule }     from 'angular2-highcharts'; 
 import { platformBrowserDynamic }  from '@angular/platform-browser-dynamic';
+import { Daterangepicker } from 'ng2-daterangepicker';
+import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { DateComponent } from './date/date.component';
@@ -22,6 +24,8 @@ declare var require:any;
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    Daterangepicker,
     HttpClientModule,
     ChartModule.forRoot(require('highcharts'))
   ],

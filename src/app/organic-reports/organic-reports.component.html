@@ -55,8 +55,13 @@
                         <th style="width:30%;">SESSIONS</th>
                     </tr>
                 </thead>
-                <tbody [innerHtml]='landingPageTableHtml'>
+                <tbody *ngIf='landingPageTableHtml; else elseBlock' [innerHtml]='landingPageTableHtml'>
                 </tbody>
+                <ng-template #elseBlock>
+                    <tbody>
+                        <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                    </tbody>
+                </ng-template>
             </table>
         </div>
     </div>

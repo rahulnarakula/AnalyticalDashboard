@@ -10,9 +10,9 @@
     <hr class="yellow-division">
   <h1 class="col-xs-12 no_padding htag">Digital Marketing Performance Snapshot</h1>
  </div>
- <app-date></app-date>
- <app-overall-reports></app-overall-reports>
- <app-organic-reports></app-organic-reports>
- <app-revenue-reports></app-revenue-reports>
+ <app-date (datePicked)='OnDateSelected($event)'></app-date>
+ <app-overall-reports [dateGenerated]='dateGenerated'></app-overall-reports>
+ <app-organic-reports [dateGenerated]='dateGenerated'></app-organic-reports>
+ <app-revenue-reports [dateGenerated]='dateGenerated'></app-revenue-reports>
 
 </div>

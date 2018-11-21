@@ -3,7 +3,10 @@
         <h5><b>VISITORS AND PAGE VIEWS</b></h5>
         <p class="yellow-text">ALL USERS</p>
         <div >
-                <chart id="chartContainer" style="width: 100%;" [options]="line_chart_options"></chart>
+                <chart *ngIf='line_chart_options; else elseBlock' id="chartContainer" style="width: 100%;" [options]="line_chart_options"></chart>
+                <ng-template #elseBlock>
+                <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+            </ng-template>
         </div>
     </div>
 </div>	
@@ -59,7 +62,10 @@
                     <h5><b>DEVICE OVERVIEW</b></h5>
                     <p class="yellow-text">SESSIONS</p>
                     <div>
-                            <chart id="pieChartContainer1" style=" width: 100%;" [options]="pie_devices_options"></chart>
+                            <chart *ngIf='pie_devices_options; else elseBlock' id="pieChartContainer1" style=" width: 100%;" [options]="pie_devices_options"></chart>
+                            <ng-template #elseBlock>
+                                    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                                </ng-template>
                     </div>
                 </div>
             </div>
@@ -68,7 +74,10 @@
                     <h5><b>CHANNEL DISTRIBUTION</b></h5>
                     <p class="yellow-text">SESSIONS</p>
                     <div >
-                            <chart id="pieChartContainer2" style=" width: 100%;" [options]="pie_sources_options"></chart>
+                            <chart *ngIf='pie_sources_options; else elseBlock' id="pieChartContainer2" style=" width: 100%;" [options]="pie_sources_options"></chart>
+                            <ng-template #elseBlock>
+                                    <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
+                                </ng-template>
                     </div>
                 </div>
             </div>

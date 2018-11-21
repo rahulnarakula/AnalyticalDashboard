@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { AnalyticalDataService } from '../analytical-data.service';
 
 @Component({
@@ -22,21 +22,51 @@ goal_completions = 0;
 page_views_per_session:any = 0;
 avg_session_duration:any = 0;
 
+@Input() 
+  public set dateGenerated(val: string) {
+    //this.dateGenerated = val;
+    this.generateCharts(val);
+  }
+  
+  generateCharts(val): any {
+    if(val){
+        this.pie_devices_options= null;
+    this.pie_sources_options = null;
+    this.line_chart_options = null;
+    this.sessions = 0;
+    this.page_views = 0;
+    this.session_duration = 0;
+    this.goal_value = 0;
+    this.goal_completions = 0;
+    this.page_views_per_session = 0;
+    this.avg_session_duration = 0;
+    
+      this.analyticData.getData({
+        "Cust_id" : 14001,
+                  "Filters" : {"Analytics" : "Google_Analytics","Dimensions" : ["DEVICE_CATEGORY", "MEDIUM","SITE"],
+                      "Metrics" : ["Sessions", "Bounce Rate"],
+                      "Start_Date" : val.substr(0,10),
+                      "End_Date" : val.substr(13,10)}
+      }).subscribe(
+        data => {
+          this.data = data;
+          this.setValues();
+        },
+        error => this.errorMessage =<any>error
+      );
+    }
+  }
+
 constructor(private analyticData: AnalyticalDataService) { }
 
   ngOnInit() {
-    this.analyticData.getData().subscribe(
-      data => {
-        this.data = data;
-        this.setValues();
-      },
-      error => this.errorMessage =<any>error
-    );
   }
 
   setValues(){
+    
   var chartSessionsData = [];
   var chartPageViewsData = [];
+  
     for (let index in this.data['Site Sessions']) {
       let value = this.data['Site Sessions'][index];
 
@@ -88,7 +118,7 @@ constructor(private analyticData: AnalyticalDataService) { }
   createAnalyticsChart(chartSessionsData: any[], chartPageViewsData: any[]) {
     this.line_chart_options = {
       
-      title : { text : 'Angular 2 high charts example with selection event ' },
+      title : { text : '' },
     
           chart: {
             backgroundColor: "#081f32",
