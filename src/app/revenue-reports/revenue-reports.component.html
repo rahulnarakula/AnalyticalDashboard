@@ -9,7 +9,9 @@
                 <div class="col-md-12 analytics-section device-overview">
                     <h5><b>CHANNEL DISTRIBUTION</b></h5>
                     <p class="yellow-text">SESSIONS</p>
-                    <div id="pieChartContainer3" style=" width: 100%;"></div>
+                    <div>
+                        <chart id="pieChartContainer3" style=" width: 100%;" [options]="pie_sources_options"></chart>
+                    </div>
                 </div>
             </div>
         </div>
@@ -28,7 +30,7 @@
                         <th style="width:30%;">GOAL VALUE</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody [innerHtml]='goalCompletionsTableHtml'>
                 </tbody>
             </table>
         </div>

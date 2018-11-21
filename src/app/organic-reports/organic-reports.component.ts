@@ -24,7 +24,7 @@ export class OrganicReportsComponent implements OnInit {
   ngOnInit() {
     this.analyticData.getData().subscribe(
       data => {
-        this.data = data;console.log("hoiiiiiiiiii");
+        this.data = data;
         this.setValues();
       },
       error => this.errorMessage =<any>error

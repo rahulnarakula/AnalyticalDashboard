@@ -12,7 +12,7 @@ export class AnalyticalDataService {
   getData(): Observable<any> {
     return this.http.post(this.dataURL,{
       "Cust_id" : 14001,
-                "Filters" : {"Analytics" : "Google_Analytics","Dimensions" : ["DEVICE_CATEGORY","LANDING_PAGE", "MEDIUM"],
+                "Filters" : {"Analytics" : "Google_Analytics","Dimensions" : ["DEVICE_CATEGORY","LANDING_PAGE", "MEDIUM","SOURCE","CITY_NAME"],
                     "Metrics" : ["Sessions", "Bounce Rate"],
                     "Start_Date" : "2017-05-01",
                     "End_Date" : "2017-05-28"}
